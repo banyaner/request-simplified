@@ -1,0 +1,10 @@
+{
+  "name": "request-simplified",
+  "version": "1.0.1",
+  "description": "Simplified HTTP post & get & jsonp request.",
+  "author": {
+    "name": "zhongxia",
+    "email": "amy_zhjx@163.com"
+  },
+  "main": "index"
+}
