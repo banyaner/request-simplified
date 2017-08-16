@@ -16,7 +16,7 @@ npm install request-simplified
 
 ## 使用
 
-## 设置根路径
+### 设置根路径
 
 ```javascript
 import root from 'request-simplified'

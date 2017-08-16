@@ -2,9 +2,13 @@
   "name": "request-simplified",
   "version": "1.0.1",
   "description": "Simplified HTTP post & get & jsonp request.",
+  "main": "index",
   "author": {
     "name": "zhongxia",
     "email": "amy_zhjx@163.com"
   },
-  "main": "index"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/banyaner/request-simplified.git"
+  }
 }
