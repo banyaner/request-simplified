@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>http-simplified测试</title>
+</head>
+<body>
+<div>
+    <p>打开console，查看请求结果</p>
+</div>
+<script src="index.js"></script>
+<script>
+    // 设置通用根路径，get请求（在同一域名下测试，或使用google的'Allow-Control-Allow-Origin: *'插件）
+    console.log('get请求-----------')
+    request.root('http://postman-echo.com')
+    request.get('/get', {test: 123}, function (res) {
+        console.log(res)
+    }, function (res) {
+        console.log(res)
+    })
+    // test3
+    console.log('jsonp请求-----------')
+    request.jsonp('http://comment.api.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CJHB85H800308BQA/comments/newList', {
+        limit: 15,
+        offset: 0
+    }, function (res) {
+        console.log(res)
+    })
+    // post请求（有跨域问题，需在同一域名下测试）
+//    const formData = new FormData()
+//    formData.append('name', 'Banyaner')
+//    request.post('url', formData,
+//        {'Content-Type': 'application/x-www-form-urlencoded'}, function (res) {
+//        console.log(res)
+//    }, function (res) {
+//        console.log(res)
+//    })
+</script>
+</body>
+</html>
