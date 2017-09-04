@@ -144,7 +144,7 @@
             document.getElementsByTagName('head')[0].appendChild(jsonpScript)
             jsonpScript.onerror = function () {
                 console.log(new Error('JSONP request-simplified to ' + _url + ' failed'))
-                _util.clearCallbackfunction(callbackFunction)
+                _util.clearCallbackfunction(window.jsonpCallback)
                 _util.removeScript(scriptId)
                 cbFail && cbFail()
             }
