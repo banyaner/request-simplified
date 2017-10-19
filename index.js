@@ -131,11 +131,14 @@
             var paramsAll = ''
             if (_url.indexOf('callback=') === -1 && !params.callback) {
                 window.jsonpCallback = _util.generateCallbackfunction()
-                paramsAll = Object.assign({callback: window.jsonpCallback}, params)
+                params.callback = window.jsonpCallback
+                paramsAll = params
+                // paramsAll = Object.assign({callback: window.jsonpCallback}, params)
                 _url = _util.getUrl('', path, paramsAll)
             } else {
                 _url = _util.getUrl('', path, params)
-                paramsAll = Object.assign({}, params)
+                // paramsAll = Object.assign({}, params)
+                paramsAll = params
             }
             var jsonpScript = document.createElement('script')
             jsonpScript.src = _url
