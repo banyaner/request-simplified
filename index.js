@@ -89,6 +89,7 @@
          */
         function post(path, body, headers, cbSuccess, cbFail) {
             var xhr = new XMLHttpRequest()
+            xhr.withCredentials = true // 暂时性方案
             var url = path.indexOf('//') > -1 ? path : (rootPath + path)
             xhr.open('post', url, false) // 同步请求
             var headerKeys = Object.keys(headers)
