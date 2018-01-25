@@ -55,7 +55,7 @@
             var xhr = new XMLHttpRequest()
             xhr.withCredentials = true
             var url = _util.getUrl(rootPath, path, params)
-            xhr.open('get', url, false) // 同步请求
+            xhr.open('get', url, true) // 异步请求
             xhr.setRequestHeader('Accept', 'application/json, text/plain, */*')
             xhr.onreadystatechange = function () {
                 var res = {
@@ -93,7 +93,7 @@
             var xhr = new XMLHttpRequest()
             xhr.withCredentials = true
             var url = path.indexOf('//') > -1 ? path : (rootPath + path)
-            xhr.open('post', url, false) // 同步请求
+            xhr.open('post', url, true) // 异步请求
             var headerKeys = Object.keys(headers)
             var i = 0
             var max = headerKeys.length
