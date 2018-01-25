@@ -53,8 +53,10 @@
          */
         function get(path, params, cbSuccess, cbFail) {
             var xhr = new XMLHttpRequest()
+            xhr.withCredentials = true
             var url = _util.getUrl(rootPath, path, params)
             xhr.open('get', url, false) // 同步请求
+            xhr.setRequestHeader('Accept', 'application/json, text/plain, */*')
             xhr.onreadystatechange = function () {
                 var res = {
                     headers: {},
@@ -89,7 +91,7 @@
          */
         function post(path, body, headers, cbSuccess, cbFail) {
             var xhr = new XMLHttpRequest()
-            xhr.withCredentials = true // 暂时性方案
+            xhr.withCredentials = true
             var url = path.indexOf('//') > -1 ? path : (rootPath + path)
             xhr.open('post', url, false) // 同步请求
             var headerKeys = Object.keys(headers)
