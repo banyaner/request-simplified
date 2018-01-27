@@ -53,9 +53,9 @@
          */
         function get(path, params, cbSuccess, cbFail) {
             var xhr = new XMLHttpRequest()
-            xhr.withCredentials = true
             var url = _util.getUrl(rootPath, path, params)
-            xhr.open('get', url, true) // 异步请求
+            xhr.open('get', url, false) // 同步请求？？使用异步会使接口返回多次从而判断出错
+            xhr.withCredentials = true
             xhr.setRequestHeader('Accept', 'application/json, text/plain, */*')
             xhr.onreadystatechange = function () {
                 var res = {
@@ -91,9 +91,9 @@
          */
         function post(path, body, headers, cbSuccess, cbFail) {
             var xhr = new XMLHttpRequest()
-            xhr.withCredentials = true
             var url = path.indexOf('//') > -1 ? path : (rootPath + path)
             xhr.open('post', url, true) // 异步请求
+            xhr.withCredentials = true
             var headerKeys = Object.keys(headers)
             var i = 0
             var max = headerKeys.length

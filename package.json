@@ -1,6 +1,6 @@
 {
   "name": "request-simplified",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Simplified HTTP post & get & jsonp request.",
   "main": "index",
   "author": {
