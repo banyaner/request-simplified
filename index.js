@@ -57,7 +57,7 @@
             xhr.open('get', url, false) // 同步请求？？使用异步会使接口返回多次从而判断出错
             xhr.withCredentials = true
             xhr.setRequestHeader('Accept', 'application/json, text/plain, */*')
-            xhr.onreadystatechange = function () {
+            xhr.onload = function () {
                 var res = {
                     headers: {},
                 }
@@ -102,12 +102,16 @@
                     xhr.setRequestHeader(headerKeys[i], headers[headerKeys[i]])
                 }
             }
-            xhr.onreadystatechange = function () {
+            xhr.onload = function () {
                 var res = {
                     headers: {},
                 }
                 if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
-                    res.data = JSON.parse('response' in xhr ? xhr.response : xhr.responseText)
+                    try {
+                        res.data = JSON.parse('response' in xhr ? xhr.response : xhr.responseText)
+                    } catch (e) {
+                        res.data = 'response' in xhr ? xhr.response : xhr.responseText
+                    }
                     res.status = xhr.status
                     res.statusText = xhr.statusText
                     res.headers.ContentType = xhr.getResponseHeader('Content-Type')
