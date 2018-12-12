@@ -161,6 +161,7 @@
             window[paramsAll.callback] = function (data) {
                 cbSuccess(data)
                 _util.removeScript(scriptId)
+              delete window[paramsAll.callback]
             }
         }
 
