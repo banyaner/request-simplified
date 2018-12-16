@@ -32,9 +32,9 @@
     }
     _util.clearCallbackfunction = function (functionName) {
       try {
-        delete window[functionName]
+        delete global[functionName]
       } catch (e) {
-        window[functionName] = undefined
+        global[functionName] = undefined
       }
     }
     _util.removeScript = function (scriptId) {
@@ -142,10 +142,10 @@
       var _url = ''
       var paramsAll = ''
       if (_url.indexOf('callback=') === -1 && !params.callback) {
-        window.jsonpCallback = _util.generateCallbackfunction()
-        params.callback = window.jsonpCallback
+        global.jsonpCallback = _util.generateCallbackfunction()
+        params.callback = global.jsonpCallback
         paramsAll = params
-        // paramsAll = Object.assign({callback: window.jsonpCallback}, params)
+        // paramsAll = Object.assign({callback: global.jsonpCallback}, params)
         _url = _util.getUrl('', path, paramsAll)
       } else {
         _url = _util.getUrl('', path, params)
@@ -159,14 +159,14 @@
       document.getElementsByTagName('head')[0].appendChild(jsonpScript)
       jsonpScript.onerror = function () {
         console.log(new Error('JSONP request-simplified to ' + _url + ' failed'))
-        _util.clearCallbackfunction(window.jsonpCallback)
+        _util.clearCallbackfunction(global.jsonpCallback)
         _util.removeScript(scriptId)
         cbFail && cbFail()
       }
-      window[paramsAll.callback] = function (data) {
+      global[paramsAll.callback] = function (data) {
         cbSuccess(data)
         _util.removeScript(scriptId)
-        delete window[paramsAll.callback]
+        delete global[paramsAll.callback]
       }
     }
 
